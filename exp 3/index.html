@@ -1,0 +1,562 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+ 
+<head> 
+ 
+<meta charset="UTF-8"> 
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 
+<title>Cooking Recipe Site</title> 
+ 
+<style> 
+ 
+*{ 
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box; 
+} 
+html{
+    scroll-behavior:smooth;
+}
+body{ 
+    font-family:Arial, sans-serif; 
+    background:#F6EFDF; 
+    color:#3B2A1A; 
+    line-height:1.6; 
+} 
+header{ 
+    background:#4A3222; 
+    color:white; 
+    padding:25px; 
+    text-align:center; 
+} 
+ 
+header h1{ 
+    font-size:38px; 
+} 
+ 
+header p{ 
+    font-size:17px; 
+} 
+ 
+nav{ 
+    background:#3B2A1A; 
+} 
+nav ul{ 
+    display:flex; 
+    justify-content:center; 
+    list-style:none; 
+} 
+nav li{ 
+    padding:15px 25px; 
+} 
+nav a{ 
+    color:white; 
+    text-decoration:none; 
+    font-weight:bold; 
+} 
+nav li:hover{ 
+    background:#8B5E3C; 
+} 
+.hero{ 
+    background:#EFE2D0; 
+    padding:55px; 
+    text-align:center; 
+} 
+.hero h2{ 
+    font-size:32px; 
+    color:#3B2A1A; 
+} 
+.hero p{ 
+    margin-top:10px; 
+    font-size:18px; 
+} 
+.hero button{ 
+    background:#8B5E3C; 
+    color:white; 
+    padding:12px 25px; 
+    border:none; 
+    border-radius:25px; 
+    margin-top:20px; 
+    cursor:pointer; 
+} 
+.hero button:hover{ 
+    background:#6E4429; 
+} 
+.container{ 
+    display:flex; 
+    padding:30px; 
+    gap:25px; 
+} 
+.sidebar{ 
+    width:25%; 
+    background:#FBF5EC; 
+    padding:25px; 
+    border-radius:12px; 
+    box-shadow:0 3px 10px #ddd; 
+} 
+.sidebar h3{ 
+    color:#4A3222; 
+    margin-bottom:15px; 
+} 
+.sidebar ul{ 
+    list-style:none; 
+} 
+.sidebar li{ 
+    padding:0; 
+    border-bottom:1px solid #eee; 
+} 
+.sidebar li a{ 
+    display:block; 
+    padding:12px; 
+    color:#3B2A1A; 
+    text-decoration:none; 
+} 
+.sidebar li:hover{ 
+    background:#F1E4D0; 
+    cursor:pointer; 
+} 
+.sidebar li:hover a{ 
+    color:#8B5E3C; 
+} 
+.content{ 
+    width:75%; 
+} 
+.content h2{ 
+    color:#4A3222; 
+} 
+.cards{ 
+    display:flex; 
+    flex-wrap:wrap; 
+    gap:20px; 
+    margin-top:20px; 
+} 
+.card{ 
+    flex:1 1 30%; 
+    min-width:230px; 
+    background:#FBF5EC; 
+    padding:18px; 
+    border-radius:15px; 
+    text-align:center; 
+    box-shadow:0 4px 12px #ddd; 
+    transition:0.3s; 
+    scroll-margin-top:20px; 
+} 
+.card:target{ 
+    box-shadow:0 0 0 3px #8B5E3C; 
+} 
+.card:hover{ 
+    transform:translateY(-8px); 
+    box-shadow:0 8px 20px #bbb; 
+} 
+.card img{ 
+    width:100%; 
+    height:180px; 
+    object-fit:cover; 
+    border-radius:12px; 
+} 
+.card h3{ 
+    color:#3B2A1A; 
+    margin-top:12px; 
+} 
+.card p{ 
+    margin:10px 0; 
+} 
+button{ 
+    background:#3B2A1A; 
+    color:white; 
+    padding:10px 20px; 
+    border:none; 
+    border-radius:20px; 
+    margin-top:10px; 
+    cursor:pointer; 
+} 
+button:hover{ 
+    background:#8B5E3C; 
+} 
+ 
+details{ 
+    margin-top:12px; 
+    text-align:left; 
+    background:#F1E4D0; 
+    padding:10px; 
+    border-radius:8px; 
+    cursor:pointer; 
+} 
+ 
+summary{ 
+    color:#4A3222; 
+    font-weight:bold; 
+} 
+.about-section{ 
+    background:#FBF5EC; 
+    padding:55px 20px; 
+    text-align:center; 
+    border-top:3px solid #C9975B; 
+} 
+.about-section h2{ 
+    font-size:30px; 
+    color:#4A3222; 
+    margin-bottom:12px; 
+} 
+.about-section p{ 
+    max-width:560px; 
+    margin:0 auto; 
+    color:#5B4E3C; 
+} 
+header,
+#recipes,
+#categories,
+.about-section,
+footer{ 
+    scroll-margin-top:20px; 
+} 
+footer a{ 
+    color:#C9975B; 
+} 
+footer a:hover{ 
+    color:#EFE2D0; 
+    text-decoration:underline; 
+} 
+#categories:target{ 
+    box-shadow:0 0 0 3px #8B5E3C; 
+} 
+.about-section:target{ 
+    box-shadow:inset 0 0 0 3px #8B5E3C; 
+} 
+footer:target{ 
+    box-shadow:inset 0 0 0 3px #C9975B; 
+} 
+footer{ 
+    background:#3B2A1A; 
+    color:white; 
+    padding:25px; 
+    text-align:center; 
+    margin-top:20px; 
+} 
+@media screen and (max-width:992px){ 
+    .container{ 
+        flex-direction:column; 
+    } 
+    .sidebar, 
+    .content{ 
+        width:100%; 
+    } 
+    .cards{ 
+        flex-wrap:wrap; 
+    } 
+    .card{ 
+        width:45%; 
+    } 
+} 
+ 
+@media screen and (max-width:768px){ 
+ 
+    nav ul{ 
+        flex-direction:column; 
+        text-align:center; 
+    } 
+ 
+    nav li{ 
+        padding:10px; 
+    } 
+ 
+    .cards{ 
+        flex-direction:column; 
+    } 
+ 
+    .card{ 
+        width:100%; 
+    } 
+ 
+    .hero{ 
+        padding:35px 20px; 
+    } 
+ 
+    .hero h2{ 
+        font-size:25px; 
+    } 
+ 
+} 
+ 
+@media screen and (max-width:480px){ 
+ 
+    header h1{ 
+        font-size:28px; 
+    } 
+ 
+    .hero h2{ 
+        font-size:21px; 
+    } 
+ 
+    .container{ 
+        padding:15px; 
+    } 
+ 
+    button{ 
+        width:100%; 
+    } 
+ 
+} 
+ 
+</style> 
+ 
+</head> 
+ 
+ 
+<body> 
+ 
+<header id="home"> 
+ 
+<h1>Cooking Recipes</h1> 
+ 
+<p>Delicious recipes made simple</p> 
+ 
+</header> 
+ 
+<nav> 
+ 
+<ul> 
+ 
+<li><a href="#home">Home</a></li> 
+ 
+<li><a href="#recipes">Recipes</a></li> 
+ 
+<li><a href="#categories">Categories</a></li> 
+ 
+<li><a href="#about">About</a></li> 
+ 
+<li><a href="#contact">Contact</a></li> 
+ 
+</ul> 
+</nav> 
+<section class="hero"> 
+ 
+<h2>Discover Your Next Favorite Recipe</h2> 
+<p> 
+Easy, delicious and homemade recipes for every occasion. 
+</p> 
+ 
+</section> 
+ 
+<div class="container"> 
+ 
+<div class="sidebar" id="categories"> 
+ 
+<h3>Categories</h3> 
+ 
+<ul> 
+ 
+<li><a href="#pasta">Pasta</a></li> 
+ 
+<li><a href="#breakfast">Breakfast</a></li> 
+ 
+<li><a href="#pizza">Pizza</a></li> 
+ 
+<li><a href="#healthy">Healthy Food</a></li> 
+ 
+<li><a href="#desserts">Desserts</a></li> 
+ 
+<li><a href="#indian">Indian Food</a></li> 
+ 
+</ul> 
+ 
+</div> 
+ 
+<div class="content" id="recipes"> 
+ 
+<h2>Popular Recipes</h2> 
+ 
+<p> 
+Try these delicious recipes that are easy to prepare at home. 
+</p> 
+ 
+ 
+<div class="cards"> 
+ 
+<div class="card" id="pasta"> 
+ 
+<img 
+src="pasta.png" 
+alt="Creamy Pasta"> 
+<h3>Creamy Pasta</h3> 
+<p> 
+Creamy and delicious pasta 
+perfect for a quick dinner. 
+</p> 
+<details> 
+<summary>View Recipe</summary> 
+<h4>Ingredients</h4> 
+<p> 
+Pasta, cream, garlic, 
+butter, cheese and spices. 
+</p> 
+ 
+<h4>Instructions</h4> 
+ 
+<p> 
+Boil pasta. Prepare the 
+creamy sauce and mix with 
+pasta. Add cheese and serve. 
+</p> 
+ 
+</details> 
+ 
+</div> 
+<div class="card" id="breakfast"> 
+ 
+<img 
+src="pancake.png" 
+alt="Pancakes" 
+> 
+<h3>Pancakes</h3> 
+<p> 
+Soft and fluffy pancakes 
+for a perfect breakfast. 
+</p> 
+<details> 
+<summary>View Recipe</summary> 
+<h4>Ingredients</h4> 
+<p> 
+Flour, milk, egg, sugar 
+and baking powder. 
+</p> 
+<h4>Instructions</h4> 
+<p> 
+Mix all ingredients. 
+Pour the batter into a hot 
+pan and cook both sides. 
+</p> 
+</details> 
+</div> 
+<div class="card" id="pizza"> 
+<img 
+src="pizza.png" 
+alt="Pizza" 
+> 
+<h3>Margherita Pizza</h3> 
+<p> 
+Classic homemade pizza 
+with cheese and tomatoes. 
+</p> 
+<details> 
+<summary>View Recipe</summary> 
+<h4>Ingredients</h4>  
+<p> 
+Pizza base, tomato sauce, 
+mozzarella cheese and basil. 
+</p> 
+<h4>Instructions</h4> 
+<p> 
+Spread sauce on the base. 
+Add cheese and toppings. 
+Bake until golden brown. 
+</p> 
+</details> 
+</div> 
+<div class="card" id="healthy"> 
+<img 
+src="eat-the-rainbow-chopped-salad-with-basil-mozzarella-beauty-184-278133-4000x4000-ef8f3f0ad7134d2b860c51f5e7b38ce5.jpg" 
+alt="Healthy Salad" 
+> 
+<h3>Healthy Salad</h3> 
+<p> 
+Fresh and light salad 
+packed with crisp vegetables. 
+</p> 
+<details> 
+<summary>View Recipe</summary> 
+<h4>Ingredients</h4> 
+<p> 
+Lettuce, cucumber, tomato, 
+carrot, corn and lemon. 
+</p> 
+<h4>Instructions</h4> 
+<p> 
+Chop all vegetables, toss 
+together and finish with 
+lemon juice and a little salt. 
+</p> 
+</details> 
+</div> 
+<div class="card" id="desserts"> 
+<img 
+src="chocolate cake.png" 
+alt="Chocolate Cake" 
+> 
+<h3>Chocolate Cake</h3> 
+<p> 
+Soft, rich chocolate cake 
+for dessert lovers. 
+</p> 
+<details> 
+<summary>View Recipe</summary> 
+<h4>Ingredients</h4> 
+<p> 
+Flour, cocoa powder, sugar, 
+eggs, milk and butter. 
+</p> 
+<h4>Instructions</h4> 
+<p> 
+Mix all ingredients, pour 
+into a baking pan and bake 
+until fully cooked. 
+</p> 
+</details> 
+</div> 
+<div class="card" id="indian"> 
+<img 
+src="butter chicken.png" 
+alt="Butter Chicken" 
+> 
+<h3>Butter Chicken</h3> 
+<p> 
+Creamy Indian-style chicken 
+cooked with warm spices. 
+</p> 
+<details> 
+<summary>View Recipe</summary> 
+<h4>Ingredients</h4> 
+<p> 
+Chicken, tomato, butter, 
+cream, onion and spices. 
+</p> 
+<h4>Instructions</h4> 
+<p> 
+Cook chicken with spices, 
+prepare a tomato gravy, then 
+add butter, cream and combine. 
+</p> 
+</details> 
+</div> 
+</div> 
+</div> 
+</div> 
+<section class="about-section" id="about"> 
+<h2>About Cooking Recipes</h2> 
+<p> 
+Our goal is to make cooking simple, 
+fun and delicious for everyone. 
+</p>  
+</section>  
+<footer id="contact">  
+<h2>Contact Us</h2> 
+<p> 
+    Email: 
+    <a href="mailto:Cooking_RecipeSite@email.com"> 
+        Cooking_RecipeSite@email.com 
+    </a> 
+</p> 
+<p> 
+    Phone: 
+    <a href="tel:+919876543210"> 
+        +91 9876543210 
+    </a> 
+</p> 
+ 
+</footer> 
+ 
+</body> 
+ 
+</html>
